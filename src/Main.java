@@ -2,7 +2,7 @@ import classes.File;
 
 /**
  Основание исходной
- системы счисления, P1
+ системы счисления, P1д
  10
  Основание целевой системы
  счисления, P2
@@ -20,11 +20,13 @@ public class Main {
         String number = num.getNum();
         int number_10 = Integer.parseInt(number);
         System.out.println("you have(10): " + number_10);
-        String  number_2 = binar(number_10);
-        System.out.println("convert to(2): " + number_2);
-        num.setNum(number_2);
-        File.WriteNum();
-
+        if (number.length()<=5) {
+            String number_2 = binar(number_10);
+            System.out.println("convert to(2): " + number_2);
+            num.setNum(number_2);
+            File.WriteNum();
+        }
+        else System.out.println("bit depth>5");
     }
     /**
      b(10) = 8
@@ -37,13 +39,11 @@ public class Main {
     public static String binar(int n) {
         String res = "";
         int i = bitsInNumber(n);
-        if(i++<5){
         int bit;
         while ( --i >= 0 ){
             bit = (n & (1 << i)) == 0 ? 0 : 1;
             res += bit;
-        }}
-        else res="bit depth>5";
+        }
         return res;
     }
 
